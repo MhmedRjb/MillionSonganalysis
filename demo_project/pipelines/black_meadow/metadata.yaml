@@ -1,0 +1,151 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: blue
+  configuration: {}
+  downstream_blocks:
+  - downladfiles
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: Sparkconnection
+  retry_config: null
+  status: executed
+  timeout: null
+  type: custom
+  upstream_blocks: []
+  uuid: sparkconnection
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - handletextfiles
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: downladfiles
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks:
+  - sparkconnection
+  uuid: downladfiles
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - snowy_grass
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: handletextfiles
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - downladfiles
+  uuid: handletextfiles
+- all_upstream_blocks_executed: true
+  color: grey
+  configuration: {}
+  downstream_blocks:
+  - artisitnames
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: dataclass
+  retry_config: null
+  status: failed
+  timeout: null
+  type: custom
+  upstream_blocks: []
+  uuid: dataclass
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: artisitnames
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - dataclass
+  uuid: artisitnames
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: quiet tree
+  retry_config: null
+  status: updated
+  timeout: null
+  type: scratchpad
+  upstream_blocks: []
+  uuid: quiet_tree
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - long_tree
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: snowy grass
+  retry_config: null
+  status: updated
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - handletextfiles
+  uuid: snowy_grass
+- all_upstream_blocks_executed: false
+  color: blue
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: long tree
+  retry_config: null
+  status: failed
+  timeout: null
+  type: custom
+  upstream_blocks:
+  - snowy_grass
+  uuid: long_tree
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2024-03-29 06:47:17.838783+00:00'
+data_integration: null
+description: null
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: black meadow
+notification_config: {}
+retry_config: {}
+run_pipeline_in_one_process: false
+spark_config: {}
+tags: []
+type: python
+updated_at: '2024-03-29 18:46:06'
+uuid: black_meadow
+widgets: []

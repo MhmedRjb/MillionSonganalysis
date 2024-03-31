@@ -1,1 +1,6 @@
 dlt
+gender-detector
+gender_guesser
+pydrive
+gspread
+pandas_gbq

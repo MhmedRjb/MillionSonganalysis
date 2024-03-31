@@ -4,18 +4,23 @@ if 'test' not in globals():
     from mage_ai.data_preparation.decorators import test
 from demo_project.custom.dataclass import datafiles
 import requests
+from pyspark.sql import SparkSession, functions as F
+import gender_guesser.detector as gender
+from pyspark.sql.functions import udf
+
+
 from pyspark.sql.functions import udf
 from pyspark.sql.types import StringType
+from demo_project.custom.sparkconnection import spark
+import time
 
 def get_gender(name):
-    i=0
     url = "https://www.wikidata.org/w/api.php"
     params = {
         "action": "wbsearchentities",
         "format": "json",
         "language": "en",
-        "search": name
-    }
+        "search": name}
     try:
         data = requests.get(url, params=params)
 
@@ -23,7 +28,6 @@ def get_gender(name):
 
         gender_url = f'https://www.wikidata.org/wiki/Special:EntityData/{wikidataID}.json'
         response = requests.get(gender_url)
-        print(i+1)
         gender_data = response.json()
         try:
             gender = gender_data['entities'][wikidataID]['claims']['P21'][0]['mainsnak']['datavalue']['value']['id']
@@ -35,20 +39,15 @@ def get_gender(name):
 
 @transformer
 def transform(*args, **kwargs):
-    df =datafiles.unique_artists_df_par
-    # pandas_df = df.toPandas()
+    df=spark.read.parquet("datafiles/unique_artists")
 
-    # df['Gender'] = df['artistname'].apply(get_gender)
-    get_gender_udf = udf(get_gender, StringType())
+    udf_gender = F.udf(get_gender_ai, F.StringType())  # Create reusable UDF
 
-    # Apply the UDF to the DataFrame
-    df = df.withColumn('Gender', get_gender_udf(df['artistname']))
-    df.write.parquet("/datafiles/unique_artists_with_gender",mode="overwrite")
+    transformed_df = df.withColumn("gender", udf_gender(F.col("artistname")))
+    transformed_df.repartition(6).write.parquet("datafiles/unique_artists_with_gender")
+    #  i used AI to save time and resources i tried to use the api but every request take 1 sec and i did't find a way to optimize that ,help is welocme
 
-
-    return df
-
-
+    return transformed_df
 @test
 def test_output(output, *args) -> None:
     """

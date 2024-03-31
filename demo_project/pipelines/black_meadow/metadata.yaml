@@ -100,7 +100,7 @@ blocks:
   color: null
   configuration: {}
   downstream_blocks:
-  - long_tree
+  - bold_star
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -114,21 +114,55 @@ blocks:
   - handletextfiles
   uuid: snowy_grass
 - all_upstream_blocks_executed: false
-  color: blue
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - summer_wave
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: bold star
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - snowy_grass
+  uuid: bold_star
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - lingering_haze
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: summer wave
+  retry_config: null
+  status: failed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - bold_star
+  uuid: summer_wave
+- all_upstream_blocks_executed: false
+  color: null
   configuration: {}
   downstream_blocks: []
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
-  name: long tree
+  name: lingering haze
   retry_config: null
   status: failed
   timeout: null
-  type: custom
+  type: transformer
   upstream_blocks:
-  - snowy_grass
-  uuid: long_tree
+  - summer_wave
+  uuid: lingering_haze
 callbacks: []
 concurrency_config: {}
 conditionals: []
@@ -146,6 +180,6 @@ run_pipeline_in_one_process: false
 spark_config: {}
 tags: []
 type: python
-updated_at: '2024-03-29 18:46:06'
+updated_at: '2024-03-31 13:19:54'
 uuid: black_meadow
 widgets: []

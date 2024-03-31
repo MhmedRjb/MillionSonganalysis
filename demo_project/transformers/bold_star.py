@@ -50,9 +50,12 @@ def transform(*args, **kwargs):
 
     artist_gender_assigned_df = assign_gender(artist_gender_df)
     gender_count_df = artist_gender_assigned_df.groupBy('gender').count().orderBy('count', ascending=True)
-    gender_count_output_path = "output/gender_count.csv"
-    gender_count_df.write.csv(gender_count_output_path, header=True, mode="overwrite")
-    # write_to_google_sheets(gender_count_df, "hi", "ancient-bond-413701-bd91e9cea550.json")
+    
+
+    # gender_count_output_path = "output/gender_count.csv"
+    # gender_count_df.write.csv(gender_count_output_path, header=True, mode="overwrite")
+
+    write_to_google_sheets(gender_count_df, "hi", "ancient-bond-413701-80a01d0a4a8b.json")
 
     # Calculate gender yearly count and save to CSV
     gender_yearly_count_df = artist_gender_assigned_df.join(yearly_track_count_df, yearly_track_count_df.artistname == artist_gender_assigned_df.artistname).groupBy('gender','songyear').count()
@@ -61,13 +64,15 @@ def transform(*args, **kwargs):
 
     # Calculate yearly track count sorted and save to CSV
     yearly_track_count_sorted_df = yearly_track_count_df.groupBy('songyear').count().orderBy('count', ascending=True)
+    write_to_google_sheets(yearly_track_count_sorted_df, "hi", "ancient-bond-413701-80a01d0a4a8b.json")
+
     yearly_track_count_sorted_output_path = "output/yearly_track_count_sorted.csv"
     yearly_track_count_sorted_df.write.csv(yearly_track_count_sorted_output_path, header=True, mode="overwrite")
     
     return yearly_track_count_sorted_df
 
-pandas_df = pd.DataFrame({'Column1': [1, 2, 3], 'Column2': ['A', 'B', 'C']})
-write_to_google_sheets(pandas_df, "hi", "ancient-bond-413701-bd91e9cea550.json")
+# pandas_df = pd.DataFrame({'Column1': [1, 23, 3], 'Column2': ['A', 'B', 'C']})
+# write_to_google_sheets(pandas_df, "hi", "ancient-bond-413701-80a01d0a4a8b.json")
 
 @test
 def test_output(output, *args) -> None:

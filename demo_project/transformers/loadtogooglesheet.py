@@ -32,10 +32,8 @@ def write_to_google_sheets(df, sheet_name, credentials_file,Name):
     credentials = ServiceAccountCredentials.from_json_keyfile_name(credentials_file, scope)
     gc = gspread.authorize(credentials)
     gender_count_df=df
-    print(gender_count_df)
     header = gender_count_df.columns
     data = [list(row) for row in gender_count_df.collect()]
-    print (data)
     # Open the Google Sheets spreadsheet by name
     spreadsheet = gc.open(sheet_name)
     sheet = spreadsheet.worksheet(Name)
@@ -53,18 +51,18 @@ def transform(*args, **kwargs):
 
     artist_gender_assigned_df = assign_gender(artist_gender_df)
     gender_count_df = artist_gender_assigned_df.groupBy('gender').count().orderBy('count', ascending=True)
-    write_to_google_sheets(gender_count_df, "hi", "Serviceaccounts.json","gender_count")
+    write_to_google_sheets(gender_count_df, "MillionSongsanalysis", "Serviceaccounts.json","gender_count")
 
 
 
     gender_yearly_count_df = artist_gender_assigned_df.join(yearly_track_count_df, yearly_track_count_df.artistname == artist_gender_assigned_df.artistname).groupBy('gender','songyear').count()
-    write_to_google_sheets(gender_yearly_count_df, "hi", "Serviceaccounts.json","gender_yearly")
+    write_to_google_sheets(gender_yearly_count_df, "MillionSongsanalysis", "Serviceaccounts.json","gender_yearly")
 
     yearly_track_count_sorted_df = yearly_track_count_df.groupBy('songyear').count().orderBy('count', ascending=True)
-    write_to_google_sheets(yearly_track_count_sorted_df, "hi", "Serviceaccounts.json","yearly_track_count_sorted")
+    write_to_google_sheets(yearly_track_count_sorted_df, "MillionSongsanalysis", "Serviceaccounts.json","yearly_track_count_sorted")
 
     
-    return yearly_track_count_sorted_df
+    return "done"
 
 # pandas_df = pd.DataFrame({'Column1': [1, 23, 3], 'Column2': ['A', 'B', 'C']})
 # write_to_google_sheets(pandas_df, "hi", "ancient-bond-413701-80a01d0a4a8b.json")

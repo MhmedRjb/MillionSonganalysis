@@ -36,7 +36,7 @@ blocks:
   color: null
   configuration: {}
   downstream_blocks:
-  - snowy_grass
+  - wikidataapi
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -73,14 +73,14 @@ blocks:
   executor_type: local_python
   has_callback: false
   language: python
-  name: snowy grass
+  name: wikidataapi
   retry_config: null
   status: executed
   timeout: null
   type: transformer
   upstream_blocks:
   - handletextfiles
-  uuid: snowy_grass
+  uuid: wikidataapi
 - all_upstream_blocks_executed: false
   color: null
   configuration: {}
@@ -91,11 +91,11 @@ blocks:
   language: python
   name: loadtogooglesheet
   retry_config: null
-  status: failed
+  status: executed
   timeout: null
   type: transformer
   upstream_blocks:
-  - snowy_grass
+  - wikidataapi
   uuid: loadtogooglesheet
 callbacks: []
 concurrency_config: {}
@@ -107,13 +107,13 @@ executor_config: {}
 executor_count: 1
 executor_type: null
 extensions: {}
-name: black meadow
+name: MillionSongsanalysis
 notification_config: {}
 retry_config: {}
 run_pipeline_in_one_process: false
 spark_config: {}
 tags: []
 type: python
-updated_at: '2024-04-01 08:51:30'
-uuid: black_meadow
+updated_at: '2024-04-01 10:29:26'
+uuid: millionsongsanalysis
 widgets: []

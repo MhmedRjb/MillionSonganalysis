@@ -50,5 +50,5 @@ in case you get a model not found error go to requirements.txt and install packa
 
 After completing the above steps, the setup should be functional
 ### Visualizations
-[lookerstudio report](https://lookerstudio.google.com/s/iPMKjuBqdHQ))
+[lookerstudio report](https://lookerstudio.google.com/s/iPMKjuBqdHQ)
 ![singers_data_visualization_page-0001](https://github.com/MhmedRjb/MillionSonganalysis/assets/72052305/af26fac9-34c6-4c31-b3f0-8f68338d628a)

@@ -33,13 +33,15 @@ def get_gender(name):
 
 @transformer
 def transform(*args, **kwargs):
-    artist_names = datafiles.unique_artists_df_par.select('artistname').distinct().limit(10).rdd.flatMap(lambda x: x).collect()
+    unique_artists_df_par = spark.read.parquet("datafiles/unique_artists")
+
+    artist_names = unique_artists_df_par.select('artistname').distinct().limit(10).rdd.flatMap(lambda x: x).collect()
 
     genders = {name: get_gender(name) for name in artist_names}
 
     genders_df = spark.createDataFrame(list(genders.items()), ["artistname", "Gender"])
 
-    result_df = datafiles.unique_artists_df_par.join(genders_df, on='artistname', how='left')
+    result_df = unique_artists_df_par.join(genders_df, on='artistname', how='left')
 
     result_df.show()
 

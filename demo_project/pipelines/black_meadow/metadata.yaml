@@ -26,13 +26,13 @@ blocks:
   language: python
   name: downladfiles
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
   type: data_loader
   upstream_blocks:
   - sparkconnection
   uuid: downladfiles
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
   color: null
   configuration: {}
   downstream_blocks:
@@ -49,38 +49,6 @@ blocks:
   upstream_blocks:
   - downladfiles
   uuid: handletextfiles
-- all_upstream_blocks_executed: true
-  color: grey
-  configuration: {}
-  downstream_blocks:
-  - artisitnames
-  executor_config: null
-  executor_type: local_python
-  has_callback: false
-  language: python
-  name: dataclass
-  retry_config: null
-  status: failed
-  timeout: null
-  type: custom
-  upstream_blocks: []
-  uuid: dataclass
-- all_upstream_blocks_executed: false
-  color: null
-  configuration: {}
-  downstream_blocks: []
-  executor_config: null
-  executor_type: local_python
-  has_callback: false
-  language: python
-  name: artisitnames
-  retry_config: null
-  status: updated
-  timeout: null
-  type: transformer
-  upstream_blocks:
-  - dataclass
-  uuid: artisitnames
 - all_upstream_blocks_executed: true
   color: null
   configuration: {}
@@ -100,19 +68,35 @@ blocks:
   color: null
   configuration: {}
   downstream_blocks:
-  - lastformat_loadtogooglesheet
+  - loadtogooglesheet
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
   name: snowy grass
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
   type: transformer
   upstream_blocks:
   - handletextfiles
   uuid: snowy_grass
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: loadtogooglesheet
+  retry_config: null
+  status: updated
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - snowy_grass
+  uuid: loadtogooglesheet
 callbacks: []
 concurrency_config: {}
 conditionals: []
@@ -130,6 +114,6 @@ run_pipeline_in_one_process: false
 spark_config: {}
 tags: []
 type: python
-updated_at: '2024-04-01 04:45:21'
+updated_at: '2024-04-01 05:03:27'
 uuid: black_meadow
 widgets: []

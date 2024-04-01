@@ -28,7 +28,7 @@ resource "docker_container" "mage_spark_container" {
     external = 4040
   }
   volumes {
-    host_path      = "D:\\project"
+    host_path      = "${path.cwd}"
     container_path = "/home/src"
   }
   env = ["SPARK_MASTER_HOST=local"]

@@ -11,6 +11,12 @@ if 'test' not in globals():
 
 spark = SparkSession.builder.master(os.getenv('SPARK_MASTER_HOST', 'local')).getOrCreate()
 
+def download_file(url, filename):
+    try:
+        urllib.request.urlretrieve(url, filename)
+        print(f"{filename} downloaded successfully")
+    except Exception as e:
+        print(f"Error downloading {filename}: {e}")
 
 
 @data_loader
@@ -24,20 +30,14 @@ def load_data(*args, **kwargs):
     for url in urls:
         filename = os.path.basename(url)
         if not os.path.exists(filename):
-            print(f"{filename} downladong now ")
-            urllib.request.urlretrieve(url, filename)
-            print(f"{filename} done ")
+            print(f"{filename} downloading now")
+            download_file(url, filename)
         else :
             print(f"{filename} is already exist ")
-
-
-
     return urls 
 
-
 @test
-def test_output(output, *args) -> None:
-    """
-    Template code for testing the output of the block.
-    """
-    assert output is not None, 'The output is undefined'
+def test_output(*args) -> None:
+    files=['unique_artists.txt','tracks_per_year.txt','unique_tracks.txt']
+    for filename in files :
+        assert os.path.exists(filename) ==True

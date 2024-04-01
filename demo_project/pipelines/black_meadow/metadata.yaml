@@ -26,13 +26,13 @@ blocks:
   language: python
   name: downladfiles
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
   type: data_loader
   upstream_blocks:
   - sparkconnection
   uuid: downladfiles
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
   color: null
   configuration: {}
   downstream_blocks:
@@ -43,7 +43,7 @@ blocks:
   language: python
   name: handletextfiles
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
   type: transformer
   upstream_blocks:
@@ -75,7 +75,7 @@ blocks:
   language: python
   name: artisitnames
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
   type: transformer
   upstream_blocks:
@@ -89,80 +89,30 @@ blocks:
   executor_type: local_python
   has_callback: false
   language: python
-  name: quiet tree
+  name: TesttheAPI
   retry_config: null
   status: updated
   timeout: null
   type: scratchpad
   upstream_blocks: []
-  uuid: quiet_tree
-- all_upstream_blocks_executed: true
+  uuid: testtheapi
+- all_upstream_blocks_executed: false
   color: null
   configuration: {}
   downstream_blocks:
-  - bold_star
+  - lastformat_loadtogooglesheet
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
   name: snowy grass
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
   type: transformer
   upstream_blocks:
   - handletextfiles
   uuid: snowy_grass
-- all_upstream_blocks_executed: false
-  color: null
-  configuration: {}
-  downstream_blocks:
-  - summer_wave
-  executor_config: null
-  executor_type: local_python
-  has_callback: false
-  language: python
-  name: bold star
-  retry_config: null
-  status: updated
-  timeout: null
-  type: transformer
-  upstream_blocks:
-  - snowy_grass
-  uuid: bold_star
-- all_upstream_blocks_executed: false
-  color: null
-  configuration: {}
-  downstream_blocks:
-  - lingering_haze
-  executor_config: null
-  executor_type: local_python
-  has_callback: false
-  language: python
-  name: summer wave
-  retry_config: null
-  status: failed
-  timeout: null
-  type: data_exporter
-  upstream_blocks:
-  - bold_star
-  uuid: summer_wave
-- all_upstream_blocks_executed: false
-  color: null
-  configuration: {}
-  downstream_blocks: []
-  executor_config: null
-  executor_type: local_python
-  has_callback: false
-  language: python
-  name: lingering haze
-  retry_config: null
-  status: failed
-  timeout: null
-  type: transformer
-  upstream_blocks:
-  - summer_wave
-  uuid: lingering_haze
 callbacks: []
 concurrency_config: {}
 conditionals: []
@@ -180,6 +130,6 @@ run_pipeline_in_one_process: false
 spark_config: {}
 tags: []
 type: python
-updated_at: '2024-03-31 15:41:42'
+updated_at: '2024-04-01 04:45:21'
 uuid: black_meadow
 widgets: []

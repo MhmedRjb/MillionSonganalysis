@@ -8,6 +8,7 @@ from pyspark.sql import SparkSession, functions as F
 import gender_guesser.detector as gender
 from pyspark.sql.functions import udf
 
+import os
 
 from pyspark.sql.functions import udf
 from pyspark.sql.types import StringType
@@ -40,14 +41,17 @@ def get_gender(name):
 @transformer
 def transform(*args, **kwargs):
     df=spark.read.parquet("datafiles/unique_artists")
+    if os.path.exists('datafiles/unique_artists_with_gender'):
+        pass 
 
-    udf_gender = F.udf(get_gender_ai, F.StringType())  # Create reusable UDF
+    else:
+        udf_gender = F.udf(get_gender_ai, F.StringType())  # Create reusable UDF
 
-    transformed_df = df.withColumn("gender", udf_gender(F.col("artistname")))
-    transformed_df.repartition(6).write.parquet("datafiles/unique_artists_with_gender")
+        transformed_df = df.withColumn("gender", udf_gender(F.col("artistname")))
+        transformed_df.repartition(6).write.parquet("datafiles/unique_artists_with_gender")
     #  i used AI to save time and resources i tried to use the api but every request take 1 sec and i did't find a way to optimize that ,help is welocme
 
-    return transformed_df
+    return "done"
 @test
 def test_output(output, *args) -> None:
     """

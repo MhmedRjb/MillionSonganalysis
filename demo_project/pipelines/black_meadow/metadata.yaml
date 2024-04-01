@@ -75,7 +75,7 @@ blocks:
   language: python
   name: snowy grass
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
   type: transformer
   upstream_blocks:
@@ -91,7 +91,7 @@ blocks:
   language: python
   name: loadtogooglesheet
   retry_config: null
-  status: updated
+  status: failed
   timeout: null
   type: transformer
   upstream_blocks:
@@ -114,6 +114,6 @@ run_pipeline_in_one_process: false
 spark_config: {}
 tags: []
 type: python
-updated_at: '2024-04-01 05:03:27'
+updated_at: '2024-04-01 08:51:30'
 uuid: black_meadow
 widgets: []

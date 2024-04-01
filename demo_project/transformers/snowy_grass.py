@@ -4,7 +4,6 @@ if 'test' not in globals():
     from mage_ai.data_preparation.decorators import test
 import requests
 from pyspark.sql import SparkSession, functions as F
-import gender_guesser.detector as gender
 from pyspark.sql.functions import udf
 
 import os

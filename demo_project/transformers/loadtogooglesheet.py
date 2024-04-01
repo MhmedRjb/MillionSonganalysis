@@ -53,15 +53,15 @@ def transform(*args, **kwargs):
 
     artist_gender_assigned_df = assign_gender(artist_gender_df)
     gender_count_df = artist_gender_assigned_df.groupBy('gender').count().orderBy('count', ascending=True)
-    write_to_google_sheets(gender_count_df, "hi", "ancient-bond-413701-80a01d0a4a8b.json","gender_count")
+    write_to_google_sheets(gender_count_df, "hi", "Serviceaccounts.json","gender_count")
 
 
 
     gender_yearly_count_df = artist_gender_assigned_df.join(yearly_track_count_df, yearly_track_count_df.artistname == artist_gender_assigned_df.artistname).groupBy('gender','songyear').count()
-    write_to_google_sheets(gender_yearly_count_df, "hi", "ancient-bond-413701-80a01d0a4a8b.json","gender_yearly")
+    write_to_google_sheets(gender_yearly_count_df, "hi", "Serviceaccounts.json","gender_yearly")
 
     yearly_track_count_sorted_df = yearly_track_count_df.groupBy('songyear').count().orderBy('count', ascending=True)
-    write_to_google_sheets(yearly_track_count_sorted_df, "hi", "ancient-bond-413701-80a01d0a4a8b.json","yearly_track_count_sorted")
+    write_to_google_sheets(yearly_track_count_sorted_df, "hi", "Serviceaccounts.json","yearly_track_count_sorted")
 
     
     return yearly_track_count_sorted_df

@@ -45,10 +45,10 @@ Select 'yes' when prompted
 Run this command to trigger the pipeline:
 ``` curl -X POST http://localhost:6789/api/pipeline_schedules/1/pipeline_runs/5266e37a5e6545bb8d96531bf70471d5 ```
 If the pipeline doesn't start automatically, navigate to server: localhost:6789 and click on MillionSongsanalysis, then select 'run once'
+
+in case you get a model not found error go to requirements.txt and install packages 
+
 After completing the above steps, the setup should be functional
-
-
-
 ### Visualizations
-
+[lookerstudio report](https://lookerstudio.google.com/s/iPMKjuBqdHQ))
 ![singers_data_visualization_page-0001](https://github.com/MhmedRjb/MillionSonganalysis/assets/72052305/af26fac9-34c6-4c31-b3f0-8f68338d628a)
